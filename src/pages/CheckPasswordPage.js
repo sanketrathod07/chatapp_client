@@ -22,7 +22,7 @@ const CheckPasswordPage = () => {
     if (!location?.state?.name) {
       navigate('/email')
     }
-  }, [])
+  }, [location, navigate])
 
   const handleOnChange = (e) => {
     const { name, value } = e.target
@@ -61,7 +61,7 @@ const CheckPasswordPage = () => {
         setData({
           password: "",
         })
-        navigate('/')
+        navigate("/home")
       }
     } catch (error) {
       toast.error(error?.response?.data?.message)
