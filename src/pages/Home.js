@@ -48,11 +48,13 @@ const Home = () => {
   useEffect(() => {
     const socketConnection = io(process.env.REACT_APP_BACKEND_URL, {
       transports: ['websocket'],
-      auth: {
-        token: localStorage.getItem('token')
-      },
-      secure: true
-    })
+      auth: { token: localStorage.getItem('token') },
+      secure: true,
+      reconnectionAttempts: 5,
+      pingInterval: 25000, // Custom ping interval
+      pingTimeout: 60000 // Timeout before considering connection lost
+    });
+
 
     socketConnection.on('onlineUser', (data) => {
       dispatch(setOnlineUser(data))
