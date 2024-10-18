@@ -53,6 +53,7 @@ const CheckPasswordPage = () => {
       })
 
       toast.success(response.data.message)
+      navigate("/")
 
       if (response.data.success) {
         dispatch(setToken(response?.data?.token))
@@ -61,7 +62,7 @@ const CheckPasswordPage = () => {
         setData({
           password: "",
         })
-        navigate("/home")
+        navigate("/")
       }
     } catch (error) {
       toast.error(error?.response?.data?.message)
